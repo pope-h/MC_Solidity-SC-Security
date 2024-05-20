@@ -1,66 +1,60 @@
-## Metacrafters Smart Contract Audit Report
-
-
-|Contract Name: StorageVictim| Version: 0.4.23 |
-|--|--|
-| **Audit Performed By: Ekarika Nsemeke** | **Date: 20/05/2024** |
-|**No. of contracts: 1**|**No. of Functions: 4**|
-
-## Findings
-
-### VULNERABILITY:  CRITICAL
-
-#### i. Uninitialized Storage Variables Vulnerability:
-The Storage pointer str is uninitialized. Due to this str.user points to address `0` by default which is the contract owner’s address.
-#### Recommended Change:
-Initialize the str to `Storage memory str;` in the store function
-#### POC:
-
-    function store(uint _amount)  public  { Storage str; str.user =  msg.sender; str.amount = _amount; storages[msg.sender]  = str; }
-
-### VULNERABILITY:  MEDIUM
-#### ii. Outdated solidity compiler:
-The contract uses an outdated version of solidity which might introduce certain vulnerabilities and would not be compatible with recent versions of solidity compiler
-
-#### Recommended Change:
-Change the solidity compiler version to a more recent version.
-
-#### POC:
-
-    pragma  solidity  0.4.23;
-
-
-### VULNERABILITY:  INFORMATIONAL
-#### iii. Deprecated Constructor Syntax
-Defining constructors as functions with the same name as the contract is deprecated.
-
-#### Recommended Change:
-Use the constructor keyword instead.
-
-### VULNERABILITY:  INFORMATIONAL
-#### iv. Missing SPDX-License-Identifier
-There is no definition of a license identifier, which might flag as an error in certain development environment.
-
-#### Recommended Change:
-Add a specified License identifier, you could use `unlicensed` or a specific identifier.
-
-### VULNERABILITY:  INFORMATIONAL
-#### v. Address owner can be marked `immutable`:
-Since the address of the owner is designed to be assigned only once at construction, gas could be saved at deployment by marking the owner address variable as `immutable`.
-
-#### Recommended Change:
-State variable `owner` should be marked as immutable.
-
-#### POC:
-
-    address owner; 
-
-## Summary
-
-The contract “StorageVictim” contains 1 critical vulnerability, 1 medium vulnerability and 3 informational vulnerability. The recommended update might be
-helpful in enhancing the security of the contract.
-
-## Disclaimer
-
-This audit report might not contain all the bugs. So it is advised to
-perform further testing before deploying the contract to production.
+<h2 class="code-line" data-line-start=0 data-line-end=1 ><a id="Metacrafters_Smart_Contract_Audit_Report_0"></a>Metacrafters Smart Contract Audit Report</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Contract Name: StorageVictim</th>
+<th>Version: 0.4.23</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Audit Performed By: Ekarika Nsemeke</strong></td>
+<td><strong>Date: 20/05/2024</strong></td>
+</tr>
+<tr>
+<td><strong>No. of contracts: 1</strong></td>
+<td><strong>No. of Functions: 4</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 class="code-line" data-line-start=8 data-line-end=9 ><a id="Findings_8"></a>Findings</h2>
+<h3 class="code-line" data-line-start=10 data-line-end=11 ><a id="VULNERABILITY__CRITICAL_10"></a>VULNERABILITY:  CRITICAL</h3>
+<h4 class="code-line" data-line-start=12 data-line-end=13 ><a id="i_Uninitialized_Storage_Variables_Vulnerability_12"></a>i. Uninitialized Storage Variables Vulnerability:</h4>
+<p class="has-line-data" data-line-start="13" data-line-end="14">The Storage pointer str is uninitialized. Due to this str.user points to address <code>0</code> by default which is the contract owner’s address.</p>
+<h4 class="code-line" data-line-start=14 data-line-end=15 ><a id="Recommended_Change_14"></a>Recommended Change:</h4>
+<p class="has-line-data" data-line-start="15" data-line-end="16">Initialize the str to <code>Storage memory str;</code> in the store function</p>
+<h4 class="code-line" data-line-start=16 data-line-end=17 ><a id="POC_16"></a>POC:</h4>
+<pre><code>function store(uint _amount)  public  { Storage str; str.user =  msg.sender; str.amount = _amount; storages[msg.sender]  = str; }
+</code></pre>
+<h3 class="code-line" data-line-start=20 data-line-end=21 ><a id="VULNERABILITY__MEDIUM_20"></a>VULNERABILITY:  MEDIUM</h3>
+<h4 class="code-line" data-line-start=21 data-line-end=22 ><a id="ii_Outdated_solidity_compiler_21"></a>ii. Outdated solidity compiler:</h4>
+<p class="has-line-data" data-line-start="22" data-line-end="23">The contract uses an outdated version of solidity which might introduce certain vulnerabilities and would not be compatible with recent versions of solidity compiler</p>
+<h4 class="code-line" data-line-start=24 data-line-end=25 ><a id="Recommended_Change_24"></a>Recommended Change:</h4>
+<p class="has-line-data" data-line-start="25" data-line-end="26">Change the solidity compiler version to a more recent version.</p>
+<h4 class="code-line" data-line-start=27 data-line-end=28 ><a id="POC_27"></a>POC:</h4>
+<pre><code>pragma  solidity  0.4.23;
+</code></pre>
+<h3 class="code-line" data-line-start=32 data-line-end=33 ><a id="VULNERABILITY__INFORMATIONAL_32"></a>VULNERABILITY:  INFORMATIONAL</h3>
+<h4 class="code-line" data-line-start=33 data-line-end=34 ><a id="iii_Deprecated_Constructor_Syntax_33"></a>iii. Deprecated Constructor Syntax</h4>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Defining constructors as functions with the same name as the contract is deprecated.</p>
+<h4 class="code-line" data-line-start=36 data-line-end=37 ><a id="Recommended_Change_36"></a>Recommended Change:</h4>
+<p class="has-line-data" data-line-start="37" data-line-end="38">Use the constructor keyword instead.</p>
+<h3 class="code-line" data-line-start=39 data-line-end=40 ><a id="VULNERABILITY__INFORMATIONAL_39"></a>VULNERABILITY:  INFORMATIONAL</h3>
+<h4 class="code-line" data-line-start=40 data-line-end=41 ><a id="iv_Missing_SPDXLicenseIdentifier_40"></a>iv. Missing SPDX-License-Identifier</h4>
+<p class="has-line-data" data-line-start="41" data-line-end="42">There is no definition of a license identifier, which might flag as an error in certain development environment.</p>
+<h4 class="code-line" data-line-start=43 data-line-end=44 ><a id="Recommended_Change_43"></a>Recommended Change:</h4>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Add a specified License identifier, you could use <code>unlicensed</code> or a specific identifier.</p>
+<h3 class="code-line" data-line-start=46 data-line-end=47 ><a id="VULNERABILITY__INFORMATIONAL_46"></a>VULNERABILITY:  INFORMATIONAL</h3>
+<h4 class="code-line" data-line-start=47 data-line-end=48 ><a id="v_Address_owner_can_be_marked_immutable_47"></a>v. Address owner can be marked <code>immutable</code>:</h4>
+<p class="has-line-data" data-line-start="48" data-line-end="49">Since the address of the owner is designed to be assigned only once at construction, gas could be saved at deployment by marking the owner address variable as <code>immutable</code>.</p>
+<h4 class="code-line" data-line-start=50 data-line-end=51 ><a id="Recommended_Change_50"></a>Recommended Change:</h4>
+<p class="has-line-data" data-line-start="51" data-line-end="52">State variable <code>owner</code> should be marked as immutable.</p>
+<h4 class="code-line" data-line-start=53 data-line-end=54 ><a id="POC_53"></a>POC:</h4>
+<pre><code>address owner; 
+</code></pre>
+<h2 class="code-line" data-line-start=57 data-line-end=58 ><a id="Summary_57"></a>Summary</h2>
+<p class="has-line-data" data-line-start="59" data-line-end="61">The contract “StorageVictim” contains 1 critical vulnerability, 1 medium vulnerability and 3 informational vulnerability. The recommended update might be<br>
+helpful in enhancing the security of the contract.</p>
+<h2 class="code-line" data-line-start=62 data-line-end=63 ><a id="Disclaimer_62"></a>Disclaimer</h2>
+<p class="has-line-data" data-line-start="64" data-line-end="66">This audit report might not contain all the bugs. So it is advised to<br>
+perform further testing before deploying the contract to production.</p>
